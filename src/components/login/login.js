@@ -20,12 +20,12 @@ class Login extends Component {
 
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
 
     const url = `http://192.168.10.246:5000/api/find/user?user=${this.state.inputUserName}&pass=${this.state.inputPass}`
-    fetch(url)
-      .then(userInfo fetchUser.json())
+    const fetchUser = await fetch(url)
+    const userInfo = await fetchUser.json();
     console.log(userInfo);
 
     this.setState({ user_id: userInfo[0].ID, username: userInfo[0].user_name, password: userInfo[0].user_pass })

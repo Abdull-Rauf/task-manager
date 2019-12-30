@@ -17,20 +17,21 @@ export default class UserTasksLists extends Component {
 
   componentDidMount() {
 
-    setTimeout(async () => {
+    setTimeout(() => {
+
       const userId = localStorage.getItem('UserID');
-      console.log('userid', userId);
+
       this.setState({ user_id: userId });
+
       const endPoint = `http://192.168.10.246:5000/api/find/taskslists?id=${userId}`;
-      await fetch(endPoint).then(res => res.json()).then(data => {
+
+      fetch(endPoint).then(res => res.json()).then(data => {
         this.setState({ lists: [...this.state.lists, data] })
-        console.log("data: ", data);
       })
         .catch(err => console.log(err));
-      console.log("WIll update", this.state.lists);
-      console.log("Test ")
+
     }
-      , 1000);
+      , 8);
 
   }
 
@@ -65,15 +66,15 @@ export default class UserTasksLists extends Component {
       if (userID === null) {
         return <Redirect to='/' />
       }
-    }, 1000);
+    }, 10);
 
 
     return (
 
       <div className='user-lists'>
-        <div>
+        <div className='welcome-div'>
 
-          <h6 className='text-primary'>Welcome {this.state.user_name}</h6>
+          <h6 className='text-primary'>Welcome: {this.state.user_name}<Link to="/" onClick={this.handleLogOut}>Logout</Link></h6>
 
         </div>
         <p></p>
@@ -85,7 +86,7 @@ export default class UserTasksLists extends Component {
               value={this.state.list_name}
               onChange={this.handleChange} />
           </form> */}
-          <Link to="/" onClick={this.handleLogOut}>Logout</Link>
+
           <p></p>
           {this.state.lists.map((list) => (
             list.map((item, index) => <li key={index}>{item.LIST_NAME}</li>)

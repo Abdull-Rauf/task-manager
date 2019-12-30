@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 class Register extends Component {
   state = {
-    isUser: false,
-    user_id: '',
-    username: '',
-    password: '',
-    inputUserName: '',
-    inputPass: ''
+
   }
 
   handleUsername = (e) => {
@@ -19,19 +14,22 @@ class Register extends Component {
 
   }
 
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const url = `http://192.168.10.246:5000/api/find/user?user=${this.state.inputUserName}&pass=${this.state.inputPass}`
-    const fetchUser = await fetch(url, {
+    fetch(url, {
       method: 'POST',
       headers: ''
 
     })
-    const userInfo = await fetchUser.json();
-    console.log(userInfo);
+      .then(res => res.json())
+      .then(userInfo => {
+        this.setState({ user_id: userInfo[0].ID, username: userInfo[0].user_name, password: userInfo[0].user_pass })
 
-    this.setState({ user_id: userInfo[0].ID, username: userInfo[0].user_name, password: userInfo[0].user_pass })
+      })
+
+
     if (this.state.inputUserName === this.state.username && this.state.inputPass === this.state.password) {
       console.log('welcome');
       this.setState({ isUser: true })
