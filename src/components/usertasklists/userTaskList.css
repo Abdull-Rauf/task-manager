@@ -1,0 +1,45 @@
+.user-lists{
+  width: 20%;
+  min-height: 80vh;
+  margin-top:-42px;
+  margin-left: 0;
+  text-align: left;
+  background-color: white;
+  box-shadow: 10px 0 10px -2px rgb(233, 227, 227);
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.user-lists h6,h5{
+  text-align: left;
+  margin-left: 50px;
+}
+.my-lists{
+  margin-top: 30px;
+  margin-left: 50px;
+}
+.user-lists ul li{
+background-color: white;
+text-align: left;
+list-style-type: none;
+padding: 5px;
+cursor: pointer;
+}
+.user-lists ul li:hover{
+  background-color: whitesmoke;
+  text-decoration: none;
+  
+}
+a{
+  color: #4A4A4A !important;
+  text-decoration: none;
+}
+.add-list{
+
+  width: 80px;
+  border: none;
+  color: #4A4A4A;
+}
+input{
+  border:0px;
+}

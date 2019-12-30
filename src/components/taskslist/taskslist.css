@@ -1,0 +1,49 @@
+.task-div{
+  width: 40%;
+  margin-left: 6%;
+}
+.tasks-container{
+  padding-top: 10px;
+  width: 100%;
+  min-height: 75vh;
+  text-align: center;
+  border-radius: 2%;
+  background-color: white;
+  box-shadow: 0 0 15px 3px #cccccc;
+}
+.add-task{
+  width: 90%;
+  padding-top: 15px;
+  margin: auto;
+}
+.form-controll {
+  display: block;
+  margin: auto;
+  width: 85%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form{
+  display: flex;
+  width: 90%;
+  margin:auto;
+  padding-top: 10px;
+}
+.btn1{
+  width: 15%;
+  font-weight: bold;
+}
+.tasks-list ul{ 
+  list-style: none;
+  margin: 10px auto auto auto;
+  width: 95%;
+}

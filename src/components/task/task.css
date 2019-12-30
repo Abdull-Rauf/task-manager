@@ -1,0 +1,21 @@
+.list-group .li{
+  width: 95%;
+  height: auto;
+  margin: 8px auto 10px auto;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: rgb(106, 109, 107);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.delete{
+  position: absolute;
+  color: rgb(214, 18, 18);
+  right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
