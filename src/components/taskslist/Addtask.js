@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPlus } from 'react-icons/fa';
 
 
-const TasksList = props => {
+const AddTask = props => {
   return (
     <div className='add-ask'>
       <form onSubmit={props.handleSubmit} className='form'>
@@ -14,4 +14,4 @@ const TasksList = props => {
   );
 }
 
-export default TasksList;
+export default AddTask;

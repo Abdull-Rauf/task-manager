@@ -1,7 +1,8 @@
 .user-lists{
+  position: relative;
   width: 20%;
   min-height: 80vh;
-  margin-top:-42px;
+  margin-top:-50px;
   margin-left: 0;
   text-align: left;
   background-color: white;
@@ -9,9 +10,11 @@
   padding-top: 40px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 .welcome-div{
   display: flex;
+  z-index: 1;
 }
 .user-lists h6,h5{
   text-align: left;

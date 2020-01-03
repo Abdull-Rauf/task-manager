@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Task from '../components/task/Task';
-import TasksList from '../components/taskslist/TasksList';
+import AddTask from '../components/taskslist/Addtask';
 import '../components/taskslist/taskslist.css'
 
 export default class HomeScreen extends Component {
@@ -37,7 +37,7 @@ export default class HomeScreen extends Component {
       <div className='task-div'>
         <h4>Jobs Tasks</h4>
         <div className='tasks-container'>
-          <TasksList handleChange={this.onHandleChange} handleSubmit={this.onHandleSubmit} currentItem={this.state.currentItem.text} />
+          <AddTask handleChange={this.onHandleChange} handleSubmit={this.onHandleSubmit} currentItem={this.state.currentItem.text} />
           <div className='tasks-list'>
             <Task items={this.state.items} removeItem={this.removeItem} />
           </div>

@@ -1,70 +1,76 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 class Register extends Component {
   state = {
-
-  }
-
-  handleUsername = (e) => {
-    this.setState({ inputUserName: e.target.value })
-
-  }
-  handlePassword = (e) => {
-    this.setState({ inputPass: e.target.value })
-
+    username: '',
+    password: '',
+    isSuccess: false,
+    isEmpty: false
   }
 
   handleSubmit = (e) => {
+
     e.preventDefault();
 
-    const url = `http://192.168.10.246:5000/api/find/user?user=${this.state.inputUserName}&pass=${this.state.inputPass}`
-    fetch(url, {
-      method: 'POST',
-      headers: ''
+    if (this.state.username === '' && this.state.password === '') {
 
-    })
-      .then(res => res.json())
-      .then(userInfo => {
-        this.setState({ user_id: userInfo[0].ID, username: userInfo[0].user_name, password: userInfo[0].user_pass })
+      return this.setState({ isEmpty: true })
 
-      })
-
-
-    if (this.state.inputUserName === this.state.username && this.state.inputPass === this.state.password) {
-      console.log('welcome');
-      this.setState({ isUser: true })
     } else {
-      console.log('error');
+      const data = {
+        user_name: this.state.username,
+        user_pass: this.state.password
+      }
+
+
+      const url = '/api/add/user'
+      fetch(url, {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data === this.state.username) {
+            console.log('success');
+            this.setState({ username: '', password: "", isSuccess: true });
+
+          } else {
+            console.log('error');
+          }
+        })
+        .catch(err => console.log(err))
+
     }
-    console.log(this.state.isUser);
-
-    this.setState({ inputUserName: '' });
-    this.setState({ inputPass: '' });
-
-    localStorage.setItem('UserID', this.state.user_id, 'UserName', this.state.username);
-    localStorage.setItem('UserName', this.state.username);
-    if (this.state.isUser) {
-      return <Redirect to="/home" />
-    }
-
+  }
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
 
-
   render() {
+    if (this.state.isEmpty) {
+      alert("Username must have minimum 4 characters.")
+    } else if (this.state.isSuccess) {
+      alert("Your account has been registered.")
+      return <Redirect to="/" />
+    }
 
 
     return (
       <div className='login-container'>
         <h4>Register</h4>
         <br></br>
-        <form className='login-form' onSubmit={this.handleSubmit}>
-          <input className='input-group' value={this.state.inputUserName} onChange={this.handleUsername} type='text' placeholder='Username'></input>
+        <form className='login-form' onSubmit={this.handleSubmit} >
+          <input className='input-group' name='username' onChange={this.handleChange} type='text' placeholder='Username'></input>
           <br></br>
-          <input className='input-group' value={this.state.inputPass} onChange={this.handlePassword} type='password' placeholder='Password'></input>
+          <input className='input-group' name='password' onChange={this.handleChange} type='password' placeholder='Password'></input>
           <br></br>
 
           <button type='submit' className='btn btn-primary'>Register</button><span className='bg-light register'><Link to='/'>Login</Link></span>
+
         </form>
 
       </div >
