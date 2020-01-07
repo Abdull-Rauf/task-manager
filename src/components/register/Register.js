@@ -23,7 +23,7 @@ class Register extends Component {
       }
 
 
-      const url = '/api/add/user'
+      const url = '/add/user'
       fetch(url, {
         method: 'post',
         body: JSON.stringify(data),

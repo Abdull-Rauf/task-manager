@@ -6,64 +6,108 @@ export default class UserTasksLists extends Component {
 
   state = {
     lists: [],
+    tasks: [],
     list_id: '',
     list_name: '',
     user_name: '',
-    user_id: ''
-  }
-  componentDidMount() {
+    user_id: '',
 
+  }
+
+
+
+  componentDidMount() {
 
     const userId = localStorage.getItem('UserID');
 
     this.setState({ user_id: userId });
 
-    const endPoint = `/api/find/taskslists?id=${userId}`;
+    const endPoint = `/find/tasks?id=${userId}`;
 
     fetch(endPoint).then(res => res.json()).then(data => {
       data.map(list => {
-        return this.setState({ lists: [...this.state.lists, list], list_id: list.ID })
+        return this.setState({ lists: [...this.state.lists, list], list_id: list.listID })
       })
 
-    })
-      .catch(err => console.log(err));
+    }).catch(err => console.log(err));
 
   }
+
+
+
+
   handleChange = (e) => {
 
     this.setState({ list_name: e.target.value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
 
+
+
+  handleSubmit = (e) => {
+
+    e.preventDefault();
 
     const newList = this.state.list_name;
     if (newList !== '') {
-      this.setState({ lists: [...this.state.lists, newList] })
+      this.setState({ list_name: newList })
     }
+
+
+
+    const data = {
+      list_name: this.state.list_name,
+      user_id: this.state.user_id
+    }
+    fetch('/add/list', {
+      method: 'post',
+      body: JSON.stringify(data),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data === this.state.list_name) {
+          console.log('success');
+
+        } else {
+          console.log('error');
+        }
+      })
+      .catch(err => console.log(err))
+
+
+
   }
+
+
+
 
   handleLogOut = () => {
     console.log('logout');
     localStorage.removeItem('UserID')
     localStorage.removeItem('UserName')
-
   }
+
+
+
+
+
   handleListClick = (index) => {
-    console.log(index + 1);
 
-    const listId = index + 1;
-    fetch(`api/find/tasks?id=${listId}`)
-      .then(res => res.json())
-      .then(tasks => {
-        tasks.map(task => {
-          return console.log(task.content);
-        })
+    const lists = this.state.lists;
 
-      })
+    return lists[index].tasks.map(task => {
+      this.setState({ tasks: '' });
+      this.setState({ tasks: [...this.state.tasks, task.taskname] })
 
+      console.log(this.state.tasks);
+    })
   }
+
+
+
+
+
 
   render() {
 
@@ -79,13 +123,13 @@ export default class UserTasksLists extends Component {
       <div className='user-lists'>
         <div className='welcome-div'>
 
-          <h6 className='text-primary'>Welcome: {this.state.user_name}<Link to="/" onClick={this.handleLogOut}>Logout</Link></h6>
+          <h6 className='text-info'>Welcome: {this.state.user_name}<Link to="/" onClick={this.handleLogOut}>Logout</Link></h6>
 
         </div>
         {/* <p></p>
         <h6 className='text-primary'>MY LISTS</h6> */}
         <form onSubmit={this.handleSubmit} className='my-lists' >
-          <input type='text' placeholder='Add new list'
+          <input type='text' placeholder=' + Add New List'
             value={this.state.list_name}
             onChange={this.handleChange} size="15" />
         </form>
@@ -93,8 +137,8 @@ export default class UserTasksLists extends Component {
         <ul className='my-lists'>
 
           {this.state.lists.map((list, index) => (
-            <li key={index} onClick={() => this.handleListClick(index)}>{list.LIST_NAME}</li>)
-          ).sort().reverse()}
+            <li key={index} onClick={() => this.handleListClick(index)}>{list.listname}</li>)
+          ).sort()}
 
         </ul>
       </div>

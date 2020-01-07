@@ -8,7 +8,7 @@ const AddTask = props => {
       <form onSubmit={props.handleSubmit} className='form'>
         <input type="text" className='form-controll' placeholder='Add your todo'
           value={props.currentItem} onChange={props.handleChange} />
-        <button className='btn btn-primary ml-2 btn1' type='submit' ><FaPlus /></button>
+        <button className='btn btn-info ml-2 btn1' type='submit' ><FaPlus /></button>
       </form >
     </div>
   );
