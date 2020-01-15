@@ -1,79 +1,19 @@
-import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import './login.css'
-class Login extends Component {
+import React from 'react';
+import FormComponent from '../form/FormComponent';
+import '../form/form.css'
 
-  state = this.initialState;
-  get initialState() {
-    return {
-      isEmpty: false,
-      user_id: '',
-      username: '',
-      password: '',
-      inputUserName: '',
-      inputPass: '',
-    }
-  }
+const Login = (props) => {
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-      isError: false
-    })
-  }
+  const userid = localStorage.getItem('UserID');
 
-
-
-  handleSubmit = (e) => {
-
-    e.preventDefault();
-    console.log('object');
-
-    const url = `/find/user?user=${this.state.inputUserName}&pass=${this.state.inputPass}`
-    fetch(url)
-      .then(res => res.json())
-      .then(userInfo => {
-
-        if (userInfo[0] === undefined) {
-          return this.setState({ isEmpty: true })
-        } else {
-          this.setState({ user_id: userInfo[0].userID, username: userInfo[0].user_name, password: userInfo[0].user_pass });
-          localStorage.setItem('UserID', this.state.user_id);
-          localStorage.setItem('UserName', this.state.username);
-
-          this.setState(this.initialState);
-          // this.setState({ inputUserName: '' });
-          // this.setState({ inputPass: '' });
-        }
-      })
-
-  }
-
-
-
-  render() {
-
-    if (localStorage.getItem('UserID')) {
-      return <Redirect to="/home" />
-    }
-
-    return (
-      <div className='login-container'>
-        <h4>Login</h4>
-        <br></br>
-        <p>{this.state.isEmpty && <span style={{ color: "red" }}>{"Invalid Input"}</span>}</p>
-        <p>{this.state.isError && <span style={{ color: "red" }}>{"User not Found"}</span>}</p>
-        <form className='login-form' onSubmit={this.handleSubmit}>
-          <input className='input-group' onChange={this.handleChange} type='text' placeholder='Username' name='inputUserName'></input>
-          <br></br>
-          <input className='input-group' onChange={this.handleChange} type='password' placeholder='Password' name='inputPass'></input>
-          <br></br>
-
-          <button type='submit' className='btn btn-info'>Login</button><span className='bg-light register'><Link to='/register'>Register</Link></span>
-        </form>
-      </div >
-    );
-  }
+  console.log(userid);
+  return (
+    <React.Fragment>
+      <h4>Login</h4>
+      {props.isEmpty && <span style={{ color: "red" }}>{"Invalid Input"}</span>}
+      {props.isError && <span style={{ color: "red" }}>{"User not Found"}</span>}
+      <FormComponent formClass='form login-form' InputFields={props.LoginFields} inputClass='input' BtnClass={'btn btn-info'} BtnType={"submit"} BtnTitle={"Login"} handleChange={props.handleChange} handleSubmit={props.handleSubmit} isSubmitBtn />
+    </React.Fragment>
+  );
 }
-
 export default Login;

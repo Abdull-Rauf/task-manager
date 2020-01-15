@@ -1,0 +1,47 @@
+{
+  "Login": [
+    {
+      "label": "username",
+      "inputName": "inputUserName",
+      "inputType": "text",
+      "placeholder": "Username"
+    },
+    {
+      "label": "password",
+      "inputName": "inputPass",
+      "inputType": "password",
+      "placeholder": "Password"
+    }
+  ],
+  "Register": [
+    {
+      "label": "username",
+      "inputName": "username",
+      "inputType": "text",
+      "placeholder": "Username"
+    },
+    {
+      "label": "password",
+      "inputName": "password",
+      "inputType": "password",
+      "placeholder": "Password"
+    }
+  ],
+  "ListName": [
+    {
+      "label": "listname",
+      "inputName": "list_name",
+      "inputType": "text",
+      "placeholder": "+ Add New List",
+      "size": 15
+    }
+  ],
+  "AddTask": [
+    {
+      "label": "taskname",
+      "inputName": "taskname",
+      "inputType": "text",
+      "placeholder": "+ Add New Task"
+    }
+  ]
+}
