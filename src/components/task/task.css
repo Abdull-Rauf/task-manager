@@ -19,3 +19,35 @@
   cursor: pointer;
   font-size: 16px;
 }
+.taskBtn{
+  width: 70px;
+}
+.task-div{
+  width: 40%;
+  margin-left: 6%;
+}
+.tasks-container{
+  padding-top: 10px;
+  width: 100%;
+  min-height: 75vh;
+  text-align: center;
+  border-radius: 2%;
+  background-color: white;
+  box-shadow: 0 0 5px 1px #ddd;
+}
+.add-task{
+  width: 90%;
+  padding-top: 15px;
+  margin: auto;
+}
+
+.taskBtn{
+  width: 15%;
+  font-weight: bold;
+  height: 100%;
+}
+.tasks-list ul{ 
+  list-style: none;
+  margin: 10px auto auto auto;
+  width: 95%;
+}

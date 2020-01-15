@@ -6,7 +6,7 @@
   margin-left: 0;
   text-align: left;
   background-color: white;
-  box-shadow: 10px 0 10px -2px rgb(233, 227, 227);
+  box-shadow: 5px 0 5px -2px #ddd;
   padding-top: 40px;
   display: flex;
   flex-direction: column;
@@ -29,11 +29,11 @@ background-color: white;
 text-align: left;
 list-style-type: none;
 padding: 5px;
-cursor: pointer;
+
 }
-.user-lists ul li:hover{
-  background-color: whitesmoke;
-  text-decoration: none;
+.user-lists ul .listName:hover{
+  cursor: pointer;
+  text-decoration: underline;
   
 }
 a{
@@ -48,4 +48,7 @@ a{
 }
 input{
   border:0px;
+}
+.sidebar-form{
+  margin: 5px auto 0 20px;
 }

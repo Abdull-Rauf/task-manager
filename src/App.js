@@ -1,28 +1,37 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './components/login/login';
+import LoginScreen from './screens/LoginScreen';
 import Navbar from './components/NavBar/Navbar';
-import Home from './components/homepage/Home'
 import './App.css';
 import './components/NavBar/navbar.css'
 import './components/task/task.css'
-import Register from './components/register/Register';
+import RegisterScreen from './screens/RegisterScreen';
+import MainScreen from './screens/MainScreen';
+import { Link } from 'react-router-dom';
 
 
 
 
 function App() {
+
+  const logOut = () => {
+    localStorage.removeItem('UserID')
+    localStorage.removeItem('UserName')
+    console.log('navLogout');
+
+  }
+
   return (
 
     <Router>
 
-      <Navbar title={"TASKIFY"} />
+      <Navbar title={"TASKIFY"} logOut={logOut} />
 
 
       <Switch>
-        <Route exact path='/' component={Login} />
-        <Route path='/home' component={Home} />
-        <Route path='/register' component={Register} />
+        <Route exact path='/' component={LoginScreen} />
+        <Route path='/home' component={MainScreen} />
+        <Route path='/register' component={RegisterScreen} />
 
       </Switch>
 
