@@ -7,7 +7,6 @@ import './components/NavBar/navbar.css'
 import './components/task/task.css'
 import RegisterScreen from './screens/RegisterScreen';
 import MainScreen from './screens/MainScreen';
-import { Link } from 'react-router-dom';
 
 
 

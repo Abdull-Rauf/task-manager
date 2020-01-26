@@ -11,11 +11,13 @@
 .header h3{
  margin: 0 0 0 45px;
  font-weight: 700;
+ color: white;
 }
 .header h5{
   display: inline-block;
   color: white;
   font-size: 16px;
+  margin: 0;
  }
  .header h4:hover{
  text-decoration: none;

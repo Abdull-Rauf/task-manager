@@ -10,6 +10,7 @@ export default class RegisterScreen extends Component {
     username: '',
     password: '',
     isSuccess: false,
+    serverRes: '',
     isEmpty: false
   }
 
@@ -22,7 +23,7 @@ export default class RegisterScreen extends Component {
   handleSubmit = (e) => {
 
     e.preventDefault();
-    console.log('registerComp');
+
     console.log(this.state.username);
 
 
@@ -44,15 +45,10 @@ export default class RegisterScreen extends Component {
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       })
         .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.username === this.state.username && data.password === this.state.password) {
-            console.log('success');
-            this.setState({ username: '', password: '', isSuccess: true });
+        .then(result => {
+          console.log(result);
+          this.setState({ serverRes: result })
 
-          } else {
-            console.log('error');
-          }
         })
         .catch(err => console.log(err))
     }
@@ -71,7 +67,7 @@ export default class RegisterScreen extends Component {
       <div className='form-container'>
         <Register handleSubmit={this.handleSubmit} formFields={FormFields.Register} handleChange={this.handleChange} isEmpty={this.state.isEmpty} />
         <br></br>
-        <span className='register'><Link to='/' >Login</Link></span>
+        {this.state.serverRes !== '' && <span style={{ color: 'green' }}>{this.state.serverRes.message}<span className='register'><Link to='/' >Login</Link></span></span>}
       </div >
 
     );

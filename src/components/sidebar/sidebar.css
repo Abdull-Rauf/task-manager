@@ -1,7 +1,7 @@
 .user-lists{
   position: relative;
-  width: 20%;
-  min-height: 80vh;
+  min-width: 17%;
+  min-height: 90vh;
   margin-top:-50px;
   margin-left: 0;
   text-align: left;
@@ -51,4 +51,11 @@ input{
 }
 .sidebar-form{
   margin: 5px auto 0 20px;
+}
+.welcome-div h5{
+  background-color: #f6f6f6;
+  padding: 5px;
+  width: 100%;
+  margin-left: 0px;
+  text-align: center;
 }

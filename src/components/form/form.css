@@ -27,13 +27,14 @@
 }
 .addtask-input{
   width: 83%;
-  padding: 5px;
+  padding: 7px;
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-right: 2px;
 }
 .list-input{
   margin-left: 20px;
+  padding: 5px;
 }
 .register{
     margin-left: 10px;

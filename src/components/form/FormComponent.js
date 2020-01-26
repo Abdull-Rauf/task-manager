@@ -8,8 +8,18 @@ const FormComponent = props => {
       {props.InputFields.map((field, index) => {
 
         return (
-          <input onChange={props.handleChange} className={props.inputClass} size={field.size} type={field.inputType} name={field.inputName} placeholder={field.placeholder} key={index} />
+
+          <input value={props.inputValue}
+            onChange={props.handleChange}
+            className={props.inputClass}
+            size={field.size}
+            type={field.inputType}
+            name={field.inputName}
+            placeholder={field.placeholder}
+            key={index} />
+
         )
+
       })
       }
       {props.isSubmitBtn && <button className={props.BtnClass} type={props.BtnType} >{props.BtnTitle}</button>}

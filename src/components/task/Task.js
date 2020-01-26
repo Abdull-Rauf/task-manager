@@ -11,8 +11,10 @@ const Task = (props) => {
     console.log(task);
 
     return (
-      <li className='list-group-item li' key={index}>{task}<span className='delete' onClick={() => props.removeItem(task.key)}>
-        <FaTrash /></span></li>
+      <li className='list-group-item li' key={index}>{task}
+        <span className='delete' onClick={() => props.removeItem(task.key)}>
+          <FaTrash /></span>
+      </li>
     )
 
   })
@@ -20,7 +22,13 @@ const Task = (props) => {
   return (
     <React.Fragment>
       <div className='add-task'>
-        <FormComponent formClass='form addtask-form' inputClass='addtask-input' InputFields={FormFields.AddTask} handleChange={props.handleChange} handleSubmit={props.handleSubmit} isSubmitBtn BtnClass='btn btn-info taskBtn' BtnTitle={<FaPlus />} />
+        <FormComponent formClass='form addtask-form'
+          inputClass='addtask-input'
+          InputFields={FormFields.AddTask}
+          handleChange={props.handleChange}
+          handleSubmit={props.handleSubmit}
+          isSubmitBtn BtnClass='btn btn-info taskBtn'
+          BtnTitle={<FaPlus />} />
       </div>
 
       <ul className='list-group'>

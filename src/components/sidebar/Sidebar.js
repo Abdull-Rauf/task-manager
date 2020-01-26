@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './sidebar.css';
 import FormComponent from '../form/FormComponent';
-import { FaTimes, FaSignOutAlt } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 
 
 
 const Sidebar = (props) => {
-
 
 
 
@@ -17,13 +15,13 @@ const Sidebar = (props) => {
 
     <div className='user-lists'>
       <div className='welcome-div'>
+        <h5>My Lists</h5>
 
-        {/* <h6 className='text-primary'>Hi!: {' '}{localStorage.getItem('UserName').toUpperCase()}{' '}<Link to="/" onClick={props.handleLogOut}><FaSignOutAlt /></Link></h6> */}
 
       </div>
       <br></br>
 
-      <FormComponent formClass='form sidebar-form' inputClass='list-input' InputFields={props.InputFields} handleChange={props.onHandleChange} handleSubmit={props.handleSubmit} isSubmitBtn={false} />
+      <FormComponent formClass='form sidebar-form' inputValue={props.inputValue} inputClass='list-input' InputFields={props.InputFields} handleChange={props.onHandleChange} handleSubmit={props.handleSubmit} isSubmitBtn={false} />
 
       <ul className='my-lists'>
 
@@ -31,7 +29,10 @@ const Sidebar = (props) => {
 
         {lists.map((list, index) => (
 
-          <li key={index}><span className='listName' onClick={() => props.handleListClick(index, list.listid)}>{list.listname}</span><span className='delete' onClick={() => props.handleDelete(list.listid)}><FaTimes /></span></li>
+          <li key={index}><span className='listName'
+            onClick={() => props.handleListClick(index, list.listid, list.listname)}>{list.listname}
+          </span>
+            <span className='delete' onClick={() => props.handleDelete(list.listid)}><FaTimes /></span></li>
 
         )
         ).sort()}
